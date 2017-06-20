@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PostsList from '../containers/posts_list';
+import PostsList from '../components/posts_list';
 
 export default class App extends Component {
     render() {

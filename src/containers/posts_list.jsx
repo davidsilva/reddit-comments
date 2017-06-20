@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchPosts } from '../actions';
 
 class PostsList extends Component {
 	renderPost(postData) {
@@ -20,7 +21,8 @@ class PostsList extends Component {
 }
 
 function mapStateToProps({ post }) {
+	console.log(post);
 	return { post };
 }
 
-export default connect(mapStateToProps)(PostsList);
+export default connect(mapStateToProps, { fetchPosts })(PostsList);

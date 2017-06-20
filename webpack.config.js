@@ -10,9 +10,6 @@ const NodeUtils = require('./src/services/common/node-service');
 const appConfig = require('./config/config');
 
 const config = {
-    entry: [
-        './src/index.js'
-    ],
     output: {
         path    : path.join(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -78,7 +75,7 @@ const config = {
 };
 
 if (NodeUtils.isProduction()) {
-    config.entry = './src/Bootstrap';
+    config.entry = './src/index';
     config.plugins.push(new webpack.optimize.UglifyJsPlugin());
 } else {
     config.devtool = 'eval';
@@ -86,7 +83,7 @@ if (NodeUtils.isProduction()) {
         'react-hot-loader/patch',
         `webpack-dev-server/client?http://localhost:${appConfig.example.port}`,
         'webpack/hot/only-dev-server',
-        './src/Bootstrap'
+        './src/index'
     ];
     config.plugins.push(
         new webpack.HotModuleReplacementPlugin()
