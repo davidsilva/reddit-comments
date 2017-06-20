@@ -6,7 +6,11 @@ export default function(state = {}, action) {
 		case FETCH_POSTS:
 			console.log("action.payload.data.data.children=");
 			console.log(action.payload.data.data.children);
-			return _.mapKeys(action.payload.data.data.children, 'id');
+			var posts = {};
+			for (var i = 0; i < action.payload.data.data.children.length; i++) {
+				posts[action.payload.data.data.children[i].data.id] = action.payload.data.data.children[i].data;
+			}
+			return posts;
 		default:
 			return state;
 	}
