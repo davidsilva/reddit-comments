@@ -4,7 +4,7 @@ import CommentsReducer from './reducer_comments';
 
 const rootReducer = combineReducers({
   posts: PostsReducer,
-  comments: CommentsReducer
+  thread: CommentsReducer
 });
 
 export default rootReducer;
