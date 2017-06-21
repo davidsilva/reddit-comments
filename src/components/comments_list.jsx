@@ -24,20 +24,14 @@ class CommentsList extends Component {
 			_.map(this.props.thread.comments, comment => {
 				console.log('comment=');
 				console.log(comment);
-				if (comment.data.replies === "") {
-					return (
-						<ol className="list-group">
-							<li className="list-group-item">
-								{comment.data.body}
-							</li>
-						</ol>
-					)
-				}
-				else {
-					return (
-						this.renderReplies(comment.data)
-					);
-				}
+				return ([
+					<ol className="list-group">
+						<li className="list-group-item">
+							{comment.data.body}
+						</li>
+					</ol>,
+					this.renderReplies(comment.data)
+				])
 			})
 		);
 	}
