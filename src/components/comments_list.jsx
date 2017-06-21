@@ -20,28 +20,55 @@ class CommentsList extends Component {
 	}
 	
 	renderComments() {
-		console.log('this.props.thread.originalPost=');
-		console.log(this.props.thread.originalPost);
-		console.log('this.props.thread.comments=');
-		console.log(this.props.thread.comments);
 		return (
 			_.map(this.props.thread.comments, comment => {
-				return (
-					<li key={comment.data.id} className="list-group-item">
-						{comment.data.body}
-					</li>
-				);
+				console.log('comment=');
+				console.log(comment);
+				if (comment.data.replies === "") {
+					return (
+						<ol className="list-group">
+							<li className="list-group-item">
+								{comment.data.body}
+							</li>
+						</ol>
+					)
+				}
+				else {
+					return (
+						this.renderReplies(comment.data)
+					);
+				}
 			})
 		);
+	}
+
+	renderReplies(listing) {
+		console.log('listing=');
+		console.log(listing);
+		if (listing.replies !== null && typeof listing.replies === 'object') {
+			return (
+				<li key={listing.id} className="list-group-item">
+					{listing.body}
+					<ol className="list-group">
+						{this.renderReplies(listing.replies.data.children[0].data)}
+					</ol>
+				</li>
+			);
+		}
+		else {
+			return (
+				<li key={listing.id} className="list-group-item">
+					{listing.body}
+				</li>
+			);
+		}
 	}
 
 	render() {
 		return (
 			<div>
 			<div>{this.renderOriginalPost()}</div>
-			<ol class="list-group">
-				{this.renderComments()}
-			</ol>
+			{this.renderComments()}
 			</div>
 		);
 	}
