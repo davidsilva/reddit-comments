@@ -26,11 +26,9 @@ class CommentsList extends Component {
 				console.log(comment);
 				return ([
 					<ol className="list-group">
-						<li className="list-group-item">
-							{comment.data.body}
-						</li>
-					</ol>,
-					this.renderReplies(comment.data)
+						{this.renderReplies(comment.data)}
+					</ol>
+					
 				])
 			})
 		);
