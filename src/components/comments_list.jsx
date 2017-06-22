@@ -41,9 +41,9 @@ class CommentsList extends Component {
 		console.log(listing);
 		if (listing.replies !== null && typeof listing.replies === 'object') {
 			return (
-				<li key={listing.id} className="list-group-item">
+				<li key={listing.id} className="list-group-item" style={{color: "blue"}}>
 					{listing.body}
-					<ol className="list-group">
+					<ol className="list-group" style={{color: "green"}}>
 						{this.renderReplies(listing.replies.data.children[0].data)}
 					</ol>
 				</li>
@@ -51,7 +51,7 @@ class CommentsList extends Component {
 		}
 		else {
 			return (
-				<li key={listing.id} className="list-group-item">
+				<li key={listing.id} className="list-group-item" style={{color: "red"}}>
 					{listing.body}
 				</li>
 			);
